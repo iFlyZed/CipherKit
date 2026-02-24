@@ -8,12 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = CipherViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        TabView {
+            CipherView(viewModel: viewModel)
+                .tabItem {
+                    Image(systemName: "lock.fill")
+                    Text("Шифр")
+                }
+            
+            HistoryView(viewModel: viewModel)
+                .tabItem {
+                    Image(systemName: "clock.fill")
+                    Text("История")
+                }
         }
         .padding()
     }
